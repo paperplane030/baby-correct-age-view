@@ -103,7 +103,7 @@ const pageStore = useMainStoreStore();
   height: 100vh;
   .detail {
     gap: 5rem;
-    width: 1360px;
+    width: 1500px;
     margin: 5rem auto 0px;
   }
   .back-btn {
