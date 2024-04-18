@@ -81,8 +81,6 @@ const pageStore = useMainStoreStore();
     gap: 60px;
     width: 1200px;
     margin: 36px auto 0px;
-    &-item {
-    }
   }
   .back-btn {
     position: fixed;
