@@ -3,7 +3,7 @@
     <div class="form-inner row justify-center items-center">
       <q-card class="form-card">
         <q-card-section class="text-center">
-          <q-card-title class="text-h6">5AI新生兒加護病房</q-card-title>
+          <div class="text-h6">5AI新生兒加護病房</div>
         </q-card-section>
         <q-card-section>
           <q-form @submit="pageStore.next" class="q-gutter-md text-body1">
@@ -17,7 +17,6 @@
                   dense
                   v-model="pageStore.form.date"
                   lazy-rules
-                  :rules="[(val) => !!val || '必填']"
                   hide-bottom-space
                 >
                   <template v-slot:append>
@@ -29,18 +28,9 @@
                       >
                         <q-date
                           class="text-dark"
-                          today-btn
                           v-model="pageStore.form.date"
                           mask="YYYY/MM/DD"
                         >
-                          <div class="row items-center justify-end">
-                            <q-btn
-                              v-close-popup
-                              label="Close"
-                              color="primary"
-                              flat
-                            ></q-btn>
-                          </div>
                         </q-date>
                       </q-popup-proxy>
                     </q-icon>
@@ -169,7 +159,6 @@
                     dense
                     type="text"
                     v-model.number="pageStore.nurse"
-                    lazy-rules
                     :rules="[(val) => !!val || '必填']"
                     hide-bottom-space
                   >
@@ -187,7 +176,6 @@
                 />
               </div>
             </div>
-            <q-separator></q-separator>
             <div class="form-item row justify-between q-mt-lg">
               <q-btn
                 class="text-body1 q-mr-xl"
@@ -205,6 +193,15 @@
                 unelevated
                 label="顯示頁面"
                 color="primary"
+              />
+              <q-btn
+                class="text-body1"
+                type="button"
+                no-caps
+                unelevated
+                label="顯示頁面1"
+                color="primary"
+                @click="pageStore.isShowResult = true"
               />
             </div>
           </q-form>

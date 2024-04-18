@@ -2,9 +2,7 @@
   <q-dialog v-model="pageStore.isShowNurseDialog" class="nurse-options-dialog">
     <q-card>
       <q-card-section>
-        <q-card-title class="text-center">
-          <div class="text-h6">編輯護理師清單</div>
-        </q-card-title>
+        <div class="text-center text-h6">編輯護理師清單</div>
       </q-card-section>
       <q-card-section>
         <q-input
@@ -27,7 +25,7 @@
           </template>
         </q-input>
       </q-card-section>
-      <q-card-section class="row">
+      <q-card-section class="row" v-if="pageStore.nurseOptions.length > 0">
         <div class="col">
           <q-list bordered separator>
             <q-item
@@ -51,7 +49,7 @@
           </q-list>
         </div>
       </q-card-section>
-      <q-card-actions align="right">
+      <q-card-actions align="right" class="q-mt-md">
         <q-btn label="關閉" color="secondary" v-close-popup />
       </q-card-actions>
     </q-card>

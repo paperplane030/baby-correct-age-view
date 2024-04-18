@@ -15,7 +15,7 @@ export const useMainStoreStore = defineStore('mainStore', {
     options: [0, 1, 2, 3, 4, 5, 6],
     // 矯正年齡
     result: {
-      isfullMonth: false,
+      isFullMonth: false,
       fromBirth: null,
       week: null,
       days: null,
@@ -70,12 +70,24 @@ export const useMainStoreStore = defineStore('mainStore', {
     deleteNurseOption(option) {
       this.nurseOptions = this.nurseOptions.filter((item) => item !== option);
       Cookies.set('nurse_options', this.nurseOptions);
+      if (this.nurseOptions.length === 0) {
+        this.nurse = '';
+      }
     },
     selectNurse(option) {
       this.nurse = option;
       this.isShowNurseDialog = false;
     },
     next() {
+      if (!this.form.date) {
+        Notify.create({
+          message: '請輸入出生日期',
+          color: 'negative',
+          position: 'top',
+          timeout: 3000,
+        });
+        return;
+      }
       // 結果 1
       this.result.fromBirth =
         this.today.diff(moment(this.form.date), 'days') + 1;
@@ -84,7 +96,7 @@ export const useMainStoreStore = defineStore('mainStore', {
       const fullMonthDays = 280 - base;
       const fullMonthDate = moment(this.form.date).add(fullMonthDays, 'days');
       this.result.fullMonthDate = moment(fullMonthDate).format('YYYY-MM-DD');
-      this.result.isfullMonth = this.today.isAfter(fullMonthDate);
+      this.result.isFullMonth = this.today.isAfter(fullMonthDate);
       // 結果 2 - 未足月
       const fixAge = base + this.result.fromBirth - 1;
       this.result.week = Math.floor(fixAge / 7);

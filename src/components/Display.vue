@@ -1,5 +1,5 @@
 <template>
-  <div class="display">
+  <div class="display column justify-center">
     <div class="text-h1 text-center text-weight-medium">
       {{ pageStore.today.format('YYYY 年 M 月 DD 日') }}
     </div>
@@ -16,14 +16,33 @@
         v-if="pageStore.isShowFromBirth"
       >
         <div class="text-center">矯正年齡</div>
-        <div class="text-center text-primary">
-          &nbsp;{{ pageStore.result.week }}&nbsp;
-        </div>
-        週
-        <div class="text-center text-primary">
-          &nbsp;{{ pageStore.result.days }}&nbsp;
-        </div>
-        天
+        <template v-if="!pageStore.result.isFullMonth">
+          <div class="text-center text-primary">
+            &nbsp;{{ pageStore.result.week }}&nbsp;
+          </div>
+          週
+          <div class="text-center text-primary">
+            &nbsp;{{ pageStore.result.days }}&nbsp;
+          </div>
+          天
+        </template>
+        <template v-else>
+          <div class="text-center text-primary">&nbsp;足月</div>
+          <template v-if="pageStore.result.fullMonth_year">
+            <div class="text-center text-primary">
+              &nbsp;{{ pageStore.result.fullMonth_year }}&nbsp;
+            </div>
+            歲
+          </template>
+          <div class="text-center text-primary">
+            &nbsp;{{ pageStore.result.fullMonth_month }}&nbsp;
+          </div>
+          月
+          <div class="text-center text-primary">
+            &nbsp;{{ pageStore.result.fullMonth_days }}&nbsp;
+          </div>
+          天
+        </template>
       </div>
       <div class="detail-item row text-h2 text-weight-bold">
         <div class="text-center">今日體重</div>
@@ -48,7 +67,7 @@
           </div>
           &nbsp;小時)
         </template>
-        <div class="text-center text-primary" v-else>禁食中</div>
+        <div class="text-center text-primary" v-else>&nbsp;禁食中</div>
       </div>
       <div class="detail-item row text-h2 text-weight-bold">
         <div class="text-center">護理師</div>
@@ -82,7 +101,6 @@ const pageStore = useMainStoreStore();
 .display {
   position: relative;
   height: 100vh;
-  padding-top: 60px;
   .detail {
     gap: 60px;
     width: 1200px;
@@ -90,9 +108,9 @@ const pageStore = useMainStoreStore();
   }
   .back-btn {
     position: fixed;
-    bottom: 10px;
+    bottom: 12px;
     left: 10px;
-    font-size: 60px;
+    font-size: 96px;
   }
   .bottom-right {
     position: fixed;

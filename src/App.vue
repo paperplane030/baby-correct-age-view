@@ -23,9 +23,9 @@ const pageStore = useMainStoreStore();
 <style lang="scss" scoped>
 .full-screen {
   position: fixed;
-  right: 10px;
-  top: 10px;
-  font-size: 60px;
+  right: 16px;
+  top: 16px;
+  font-size: 84px;
   cursor: pointer;
 }
 </style>
