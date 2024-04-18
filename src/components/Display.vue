@@ -105,6 +105,7 @@ const pageStore = useMainStoreStore();
     gap: 5rem;
     width: 1500px;
     margin: 5rem auto 0px;
+    background-color: rgba(255, 255, 255, 0.4);
   }
   .back-btn {
     position: fixed;
