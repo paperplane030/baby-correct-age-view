@@ -1,11 +1,11 @@
+import './assets/main.scss';
+import '@quasar/extras/material-icons/material-icons.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import './assets/main.scss';
 
 import { Quasar, Cookies, Notify } from 'quasar';
 import quasarLang from 'quasar/lang/zh-TW';
 // Import icon libraries
-import '@quasar/extras/material-icons/material-icons.css';
 
 // Import Quasar css
 import 'quasar/dist/quasar.css';
