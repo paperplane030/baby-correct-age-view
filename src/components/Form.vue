@@ -52,7 +52,7 @@
               <div class="col-auto">
                 <div class="label q-mr-md text-dark text-body1">出生週數</div>
               </div>
-              <div class="row items-center">
+              <div class="row items-center q-mr-md">
                 <div class="col col-md-auto">
                   <q-input
                     outlined
@@ -79,6 +79,11 @@
                 </div>
                 <div class="col-auto q-ml-md">天</div>
               </div>
+              <q-checkbox
+                class="checkbox"
+                v-model="pageStore.isShowFromBirth"
+                label="顯示矯正年齡"
+              ></q-checkbox>
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
@@ -132,7 +137,6 @@
                     type="number"
                     v-model.number="pageStore.feedCount"
                     lazy-rules
-                    :rules="[(val) => !!val || '必填']"
                     hide-bottom-space
                   >
                   </q-input>
@@ -147,7 +151,6 @@
                     type="number"
                     v-model.number="pageStore.feedPerHour"
                     lazy-rules
-                    :rules="[(val) => !!val || '必填']"
                     hide-bottom-space
                   >
                   </q-input>
@@ -184,6 +187,7 @@
                 />
               </div>
             </div>
+            <q-separator></q-separator>
             <div class="form-item row justify-between q-mt-lg">
               <q-btn
                 class="text-body1 q-mr-xl"
@@ -201,15 +205,6 @@
                 unelevated
                 label="顯示頁面"
                 color="primary"
-              />
-              <q-btn
-                class="text-body1"
-                type="button"
-                no-caps
-                unelevated
-                label="顯示頁面"
-                color="primary"
-                @click="pageStore.isShowResult = true"
               />
             </div>
           </q-form>
@@ -237,6 +232,11 @@ const pageStore = useMainStoreStore();
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   &-inner {
     height: 100vh;
+  }
+  &-item {
+    .checkbox {
+      border-left: 1px dashed #000;
+    }
   }
   &-card {
     width: 800px;

@@ -11,7 +11,10 @@
         </div>
         天
       </div>
-      <div class="detail-item row text-h2 text-weight-bold">
+      <div
+        class="detail-item row text-h2 text-weight-bold"
+        v-if="pageStore.isShowFromBirth"
+      >
         <div class="text-center">矯正年齡</div>
         <div class="text-center text-primary">
           &nbsp;{{ pageStore.result.week }}&nbsp;
@@ -35,14 +38,17 @@
       </div>
       <div class="detail-item row text-h2 text-weight-bold">
         <div class="text-center">餵食量</div>
-        <div class="text-center text-primary">
-          &nbsp;{{ pageStore.feedCount }}&nbsp;
-        </div>
-        毫升 (每&nbsp;
-        <div class="text-center text-primary">
-          {{ pageStore.feedPerHour }}
-        </div>
-        &nbsp;小時)
+        <template v-if="pageStore.feedCount">
+          <div class="text-center text-primary">
+            &nbsp;{{ pageStore.feedCount }}&nbsp;
+          </div>
+          毫升 (每&nbsp;
+          <div class="text-center text-primary">
+            {{ pageStore.feedPerHour }}
+          </div>
+          &nbsp;小時)
+        </template>
+        <div class="text-center text-primary" v-else>禁食中</div>
       </div>
       <div class="detail-item row text-h2 text-weight-bold">
         <div class="text-center">護理師</div>

@@ -42,6 +42,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     isShowNurseDialog: false,
     // 是否輸出結果
     isShowResult: false,
+    // 是否顯示矯正年齡
+    isShowFromBirth: true,
   }),
   getters: {
     weightDiff(state) {
