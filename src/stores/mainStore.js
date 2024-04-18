@@ -38,6 +38,38 @@ export const useMainStoreStore = defineStore('mainStore', {
     nurse: '',
     // 護理師選項
     nurseOptions: Cookies.get('nurse_options') || [],
+    // 預設護理師選項
+    defaultNurseOptions: [
+      '陳香伶',
+      '朱月碧',
+      '魏秀芳',
+      '柯美蓮',
+      '王儷蓉',
+      '潘珈玲',
+      '鍾宜君',
+      '張如華',
+      '莊珮宜',
+      '邱虹惠',
+      '楊雅文',
+      '李佳玲',
+      '謝雨宸',
+      '陳怡如',
+      '康詩芳',
+      '薛梅雲',
+      '涂依萍',
+      '劉筱涵',
+      '馮靖雯',
+      '呂宜臻',
+      '塗奕婷',
+      '孫瑜霙',
+      '歐真妤',
+      '林亞慧',
+      '黃穎萍',
+      '陳子涵',
+      '林詠淇',
+      '王玉婷',
+      '賴莘妮',
+    ],
     // 是否顯示修改護理師選項彈窗
     isShowNurseDialog: false,
     // 是否輸出結果
@@ -51,6 +83,11 @@ export const useMainStoreStore = defineStore('mainStore', {
     },
   },
   actions: {
+    addDefaultNurseOptions() {
+      this.nurseOptions = [];
+      this.nurseOptions = this.defaultNurseOptions;
+      Cookies.set('nurse_options', this.nurseOptions);
+    },
     addNurseOption(option) {
       if (!option) {
         Notify.create({

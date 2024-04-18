@@ -14,7 +14,7 @@ import Form from './components/Form.vue';
 import NurseOptionsDialog from './components/NurseOptionsDialog.vue';
 import Display from './components/Display.vue';
 
-import { AppFullscreen } from 'quasar';
+import { Cookies, AppFullscreen } from 'quasar';
 
 import { useMainStoreStore } from '@/stores/mainStore';
 const pageStore = useMainStoreStore();

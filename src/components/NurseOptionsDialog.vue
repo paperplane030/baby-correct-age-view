@@ -2,7 +2,7 @@
   <q-dialog v-model="pageStore.isShowNurseDialog" class="nurse-options-dialog">
     <q-card>
       <q-card-section>
-        <div class="text-center text-h6">編輯護理師清單</div>
+        <div class="text-center text-h6">編輯護理師名單</div>
       </q-card-section>
       <q-card-section>
         <q-input
@@ -49,7 +49,12 @@
           </q-list>
         </div>
       </q-card-section>
-      <q-card-actions align="right" class="q-mt-md">
+      <q-card-actions class="row justify-between q-mt-md">
+        <q-btn
+          label="載入預設名單"
+          color="primary"
+          @click="pageStore.addDefaultNurseOptions"
+        />
         <q-btn label="關閉" color="secondary" v-close-popup />
       </q-card-actions>
     </q-card>

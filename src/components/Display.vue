@@ -1,6 +1,6 @@
 <template>
   <div class="display column justify-center">
-    <div class="text-h1 text-center text-weight-medium">
+    <div class="text-h1 text-center text-weight-bolder">
       {{ pageStore.today.format('YYYY 年 M 月 DD 日') }}
     </div>
     <div class="detail column">
@@ -102,9 +102,9 @@ const pageStore = useMainStoreStore();
   position: relative;
   height: 100vh;
   .detail {
-    gap: 60px;
-    width: 1200px;
-    margin: 36px auto 0px;
+    gap: 5rem;
+    width: 1360px;
+    margin: 5rem auto 0px;
   }
   .back-btn {
     position: fixed;

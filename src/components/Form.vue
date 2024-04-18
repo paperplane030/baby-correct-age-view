@@ -3,10 +3,10 @@
     <div class="form-inner row justify-center items-center">
       <q-card class="form-card">
         <q-card-section class="text-center">
-          <div class="text-h6">5AI新生兒加護病房</div>
+          <div class="text-h5 text-weight-medium">5AI新生兒加護病房</div>
         </q-card-section>
         <q-card-section>
-          <q-form @submit="pageStore.next" class="q-gutter-md text-body1">
+          <q-form @submit="pageStore.next" class="q-gutter-md text-h6">
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
                 <div class="label q-mr-md">出生日期</div>
@@ -40,7 +40,7 @@
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
-                <div class="label q-mr-md text-dark text-body1">出生週數</div>
+                <div class="label q-mr-md text-dark">出生週數</div>
               </div>
               <div class="row items-center q-mr-md">
                 <div class="col col-md-auto">
@@ -77,7 +77,7 @@
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
-                <div class="label q-mr-md text-dark text-body1">前次體重</div>
+                <div class="label q-mr-md text-dark">前次體重</div>
               </div>
               <div class="row items-center">
                 <div class="col col-md-auto">
@@ -97,7 +97,7 @@
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
-                <div class="label q-mr-md text-dark text-body1">本日體重</div>
+                <div class="label q-mr-md text-dark">本日體重</div>
               </div>
               <div class="row items-center">
                 <div class="col col-md-auto">
@@ -123,7 +123,7 @@
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
-                <div class="label q-mr-md text-dark text-body1">餵食量</div>
+                <div class="label q-mr-md text-dark">餵食量</div>
               </div>
               <div class="row items-center">
                 <div class="col col-md-auto">
@@ -156,7 +156,7 @@
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
-                <div class="label q-mr-md text-dark text-body1">主護</div>
+                <div class="label q-mr-md text-dark">主護</div>
               </div>
               <div class="row items-center q-mr-md">
                 <div class="col col-md-auto">

@@ -2,11 +2,19 @@ body {
   font-family: 'Noto Sans TC', sans-serif;
   background-color: lighten(#000, 30%);
 }
+
 #app {
   background-image: url('/image/bg-min.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.text-h1 {
+  font-size: 8rem !important;
+}
+.text-h2 {
+  font-size: 6rem !important;
 }
 
 .nurse-options-dialog {
