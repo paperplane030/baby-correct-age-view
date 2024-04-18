@@ -113,6 +113,12 @@
                   </q-input>
                 </div>
                 <div class="col-auto q-mx-md">克</div>
+                <q-icon
+                  class="arrow_upward cursor-pointer"
+                  name="arrow_upward"
+                  color="primary"
+                  @click="pageStore.updateWeight"
+                ></q-icon>
               </div>
             </div>
             <div class="form-item row items-center text-dark">
@@ -233,6 +239,9 @@ const pageStore = useMainStoreStore();
   &-item {
     .checkbox {
       border-left: 1px dashed #000;
+    }
+    .arrow_upward {
+      font-size: 24px;
     }
   }
   &-card {

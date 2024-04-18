@@ -78,6 +78,13 @@ export const useMainStoreStore = defineStore('mainStore', {
       this.nurse = option;
       this.isShowNurseDialog = false;
     },
+    updateWeight() {
+      if (!this.todayWeight) {
+        return;
+      }
+      this.prevWeight = this.todayWeight;
+      this.todayWeight = '';
+    },
     next() {
       if (!this.form.date) {
         Notify.create({
