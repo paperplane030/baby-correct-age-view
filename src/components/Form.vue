@@ -194,7 +194,7 @@
                 label="顯示頁面"
                 color="primary"
               />
-              <q-btn
+              <!-- <q-btn
                 class="text-body1"
                 type="button"
                 no-caps
@@ -202,7 +202,7 @@
                 label="顯示頁面1"
                 color="primary"
                 @click="pageStore.isShowResult = true"
-              />
+              /> -->
             </div>
           </q-form>
         </q-card-section>
