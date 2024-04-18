@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import './assets/main.scss';
 
-import { Quasar, Cookies } from 'quasar';
+import { Quasar, Cookies, Notify } from 'quasar';
 import quasarLang from 'quasar/lang/zh-TW';
 // Import icon libraries
 import '@quasar/extras/material-icons/material-icons.css';
@@ -15,7 +15,7 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(Quasar, {
-  plugins: { Cookies }, // import Quasar plugins and add here
+  plugins: { Cookies, Notify }, // import Quasar plugins and add here
   lang: quasarLang,
   config: {
     cssAddon: true,

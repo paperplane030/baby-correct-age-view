@@ -3,10 +3,10 @@
     <div class="form-inner row justify-center items-center">
       <q-card class="form-card">
         <q-card-section class="text-center">
-          <q-card-title class="text-h6">5AI 資料顯示表格</q-card-title>
+          <q-card-title class="text-h6">5AI新生兒加護病房</q-card-title>
         </q-card-section>
         <q-card-section>
-          <q-form @submit="submit" class="q-gutter-md text-body1">
+          <q-form @submit="pageStore.next" class="q-gutter-md text-body1">
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
                 <div class="label q-mr-md">出生日期</div>
@@ -145,7 +145,7 @@
                     outlined
                     dense
                     type="number"
-                    v-model.number="pageStore.feedCount"
+                    v-model.number="pageStore.feedPerHour"
                     lazy-rules
                     :rules="[(val) => !!val || '必填']"
                     hide-bottom-space
@@ -164,7 +164,7 @@
                   <q-input
                     outlined
                     dense
-                    type="number"
+                    type="text"
                     v-model.number="pageStore.nurse"
                     lazy-rules
                     :rules="[(val) => !!val || '必填']"
@@ -184,7 +184,7 @@
                 />
               </div>
             </div>
-            <div class="form-item row justify-center">
+            <div class="form-item row justify-between q-mt-lg">
               <q-btn
                 class="text-body1 q-mr-xl"
                 type="button"
@@ -199,8 +199,17 @@
                 type="submit"
                 no-caps
                 unelevated
-                label="下一頁"
+                label="顯示頁面"
                 color="primary"
+              />
+              <q-btn
+                class="text-body1"
+                type="button"
+                no-caps
+                unelevated
+                label="顯示頁面"
+                color="primary"
+                @click="pageStore.isShowResult = true"
               />
             </div>
           </q-form>
@@ -214,46 +223,18 @@
 // vue 相關
 // 元件 相關
 // lib 相關
-import moment from 'moment';
 // store 相關
 import { useMainStoreStore } from '@/stores/mainStore';
 // data 相關
 
 const pageStore = useMainStoreStore();
-
-const submit = () => {
-  const today = moment();
-  // 結果 1
-  pageStore.result.fromBirth =
-    today.diff(moment(pageStore.form.date), 'days') + 1;
-  // 今天跟足月日期的關係
-  const base = pageStore.form.week * 7 + pageStore.form.days;
-  const fullMonthDays = 280 - base;
-  const fullMonthDate = moment(pageStore.form.date).add(fullMonthDays, 'days');
-  pageStore.result.fullMonthDate = moment(fullMonthDate).format('YYYY-MM-DD');
-  pageStore.result.isfullMonth = today.isAfter(fullMonthDate);
-  // 結果 2 - 未足月
-  const fixAge = base + pageStore.result.fromBirth - 1;
-  pageStore.result.week = Math.floor(fixAge / 7);
-  pageStore.result.days = fixAge - pageStore.result.week * 7;
-  // 結果 2 - 足月
-  // 計算兩者差異年數
-  const years = today.diff(fullMonthDate, 'years');
-  // 計算兩者差異月數，這邊要扣掉上面計算的差異年，否則會得到12個月
-  const months = today.diff(fullMonthDate, 'months') - years * 12;
-  // 把差異的年、月數加回來，否則會變成計算起訖日相差的天數(365天)
-  fullMonthDate.add(years, 'years').add(months, 'months');
-  const days = today.diff(fullMonthDate, 'days') + 1;
-  pageStore.result.fullMonth_year = years;
-  pageStore.result.fullMonth_month = months;
-  pageStore.result.fullMonth_days = days;
-  // show 彈窗
-  pageStore.isShowResult = true;
-};
 </script>
 
 <style lang="scss" scoped>
 .form {
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   &-inner {
     height: 100vh;
   }
