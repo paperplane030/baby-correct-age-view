@@ -36,7 +36,9 @@
               v-ripple
               @click="pageStore.selectNurse(nurse)"
             >
-              <q-item-section class="text-center">{{ nurse }}</q-item-section>
+              <q-item-section class="text-center text-body1">{{
+                nurse
+              }}</q-item-section>
               <q-item-section avatar side>
                 <q-icon
                   color="negative"

@@ -1,5 +1,9 @@
 <template>
   <div class="display column justify-center">
+    <p class="top-right text-h2 text-weight-bold">
+      床號 :5A99- {{ pageStore.bed }}
+    </p>
+
     <div class="text-h1 text-center text-weight-bolder">
       {{ pageStore.today.format('YYYY 年 M 月 DD 日') }}
     </div>
@@ -112,6 +116,11 @@ const pageStore = useMainStoreStore();
     bottom: 12px;
     left: 10px;
     font-size: 96px;
+  }
+  .top-right {
+    position: fixed;
+    top: 32px;
+    left: 24px;
   }
   .bottom-right {
     position: fixed;

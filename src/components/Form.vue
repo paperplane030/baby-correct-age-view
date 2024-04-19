@@ -9,6 +9,26 @@
           <q-form @submit="pageStore.next" class="q-gutter-md text-h6">
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
+                <div class="label q-mr-md text-dark">床號</div>
+              </div>
+              <div class="q-mr-md">5A99-</div>
+              <div class="row items-center">
+                <div class="col col-md-auto">
+                  <q-select
+                    class="select"
+                    outlined
+                    dense
+                    v-model="pageStore.bed"
+                    :options="pageStore.bedOptions"
+                    lazy-rules
+                    hide-bottom-space
+                  >
+                  </q-select>
+                </div>
+              </div>
+            </div>
+            <div class="form-item row items-center text-dark">
+              <div class="col-auto">
                 <div class="label q-mr-md">出生日期</div>
               </div>
               <div class="col-6">
@@ -58,6 +78,7 @@
                 <div class="col-auto q-mx-md">周</div>
                 <div class="col">
                   <q-select
+                    class="select"
                     outlined
                     dense
                     v-model="pageStore.form.days"

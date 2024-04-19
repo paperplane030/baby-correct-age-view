@@ -36,6 +36,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     feedPerHour: '',
     // 主護理師
     nurse: '',
+    // 床號
+    bed: '',
     // 護理師選項
     nurseOptions: Cookies.get('nurse_options') || [],
     // 預設護理師選項
@@ -80,6 +82,12 @@ export const useMainStoreStore = defineStore('mainStore', {
   getters: {
     weightDiff(state) {
       return state.todayWeight - state.prevWeight;
+    },
+    bedOptions() {
+      // 1~18，除去4、13、14
+      return Array.from({ length: 18 }, (_, i) => i + 1).filter(
+        (n) => ![4, 13, 14].includes(n)
+      );
     },
   },
   actions: {
