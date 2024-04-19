@@ -3,9 +3,8 @@
     <p class="top-right text-h2 text-weight-bold">
       床號 :5A99- {{ pageStore.bed }}
     </p>
-
     <div class="text-h1 text-center text-weight-bolder">
-      {{ pageStore.today.format('YYYY 年 M 月 DD 日') }}
+      {{ moment().format('YYYY 年 M 月 DD 日') }}
     </div>
     <div class="detail column">
       <div class="detail-item row text-h2 text-weight-bold">
@@ -94,6 +93,7 @@
 // vue 相關
 // 元件 相關
 // lib 相關
+import moment from 'moment';
 // store 相關
 import { useMainStoreStore } from '@/stores/mainStore';
 // data 相關

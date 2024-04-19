@@ -247,6 +247,7 @@ import { useMainStoreStore } from '@/stores/mainStore';
 // data 相關
 
 const pageStore = useMainStoreStore();
+pageStore.init();
 </script>
 
 <style lang="scss" scoped>

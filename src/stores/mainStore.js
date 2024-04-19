@@ -24,8 +24,6 @@ export const useMainStoreStore = defineStore('mainStore', {
       fullMonth_days: null,
       fullMonthDate: null,
     },
-    // 今天
-    today: moment(),
     // 前次體重
     prevWeight: '',
     // 本日體重
@@ -78,6 +76,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     isShowResult: false,
     // 是否顯示矯正年齡
     isShowFromBirth: true,
+    // data 從 cookie 紀錄的資料
+    data: Cookies.get('data') || {},
   }),
   getters: {
     weightDiff(state) {
@@ -91,6 +91,20 @@ export const useMainStoreStore = defineStore('mainStore', {
     },
   },
   actions: {
+    init() {
+      // 如果 data 有值，則將 data 資料填入 state
+      if (Object.keys(this.data).length !== 0) {
+        this.form.date = this.data.date;
+        this.form.week = this.data.week;
+        this.form.days = this.data.days;
+        this.bed = this.data.bed;
+        this.prevWeight = this.data.prevWeight;
+        this.todayWeight = this.data.todayWeight;
+        this.nurse = this.data.nurse;
+        this.feedCount = this.data.feedCount;
+        this.feedPerHour = this.data.feedPerHour;
+      }
+    },
     addDefaultNurseOptions() {
       this.nurseOptions = [];
       this.nurseOptions = this.defaultNurseOptions;
@@ -140,32 +154,44 @@ export const useMainStoreStore = defineStore('mainStore', {
         });
         return;
       }
+      const today = moment();
       // 結果 1
-      this.result.fromBirth =
-        this.today.diff(moment(this.form.date), 'days') + 1;
+      this.result.fromBirth = today.diff(moment(this.form.date), 'days') + 1;
       // 今天跟足月日期的關係
       const base = this.form.week * 7 + this.form.days;
       const fullMonthDays = 280 - base;
       const fullMonthDate = moment(this.form.date).add(fullMonthDays, 'days');
       this.result.fullMonthDate = moment(fullMonthDate).format('YYYY-MM-DD');
-      this.result.isFullMonth = this.today.isAfter(fullMonthDate);
+      this.result.isFullMonth = today.isAfter(fullMonthDate);
       // 結果 2 - 未足月
       const fixAge = base + this.result.fromBirth - 1;
       this.result.week = Math.floor(fixAge / 7);
       this.result.days = fixAge - this.result.week * 7;
       // 結果 2 - 足月
       // 計算兩者差異年數
-      const years = this.today.diff(fullMonthDate, 'years');
+      const years = today.diff(fullMonthDate, 'years');
       // 計算兩者差異月數，這邊要扣掉上面計算的差異年，否則會得到12個月
-      const months = this.today.diff(fullMonthDate, 'months') - years * 12;
+      const months = today.diff(fullMonthDate, 'months') - years * 12;
       // 把差異的年、月數加回來，否則會變成計算起訖日相差的天數(365天)
       fullMonthDate.add(years, 'years').add(months, 'months');
-      const days = this.today.diff(fullMonthDate, 'days') + 1;
+      const days = today.diff(fullMonthDate, 'days') + 1;
       this.result.fullMonth_year = years;
       this.result.fullMonth_month = months;
       this.result.fullMonth_days = days;
       // show 下一頁
       this.isShowResult = true;
+      // 紀錄Cookie date、bed、form.week、form.days、prevWeight、todayWeight、nurse、feedCount、feedPerHour
+      Cookies.set('data', {
+        date: this.form.date,
+        bed: this.bed,
+        week: this.form.week,
+        days: this.form.days,
+        prevWeight: this.prevWeight,
+        todayWeight: this.todayWeight,
+        nurse: this.nurse,
+        feedCount: this.feedCount,
+        feedPerHour: this.feedPerHour,
+      });
     },
   },
 });
