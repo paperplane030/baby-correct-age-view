@@ -211,7 +211,7 @@
                 unelevated
                 label="清空資料"
                 color="negative"
-                @click="pageStore.$reset()"
+                @click="pageStore.isShowClearDialog = true"
               />
               <q-btn
                 class="text-body1"
@@ -236,6 +236,31 @@
       </q-card>
     </div>
   </div>
+  <q-dialog ref="dialogRef" v-model="pageStore.isShowClearDialog">
+    <q-card class="q-dialog-plugin q-pa-md">
+      <q-card-actions align="center" class="text-h6">
+        確定要清除資料嗎？
+      </q-card-actions>
+      <q-card-actions class="row justify-center">
+        <q-btn
+          no-caps
+          unelevated
+          class="text-body1 q-mr-md"
+          color="negative"
+          label="確定"
+          @click="pageStore.$reset()"
+        />
+        <q-btn
+          no-caps
+          unelevated
+          class="text-body1"
+          color="grey-8"
+          label="取消"
+          v-close-popup
+        />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup lang="ts">

@@ -85,7 +85,12 @@
       color="positive"
       @click="pageStore.isShowResult = false"
     />
-    <p class="bottom-right text-h3 text-weight-bold">5AI新生兒加護病房</p>
+    <div class="bottom-right text-h3 text-weight-bold text-center">
+      <p class="text-h2 text-weight-bold">
+        {{ moment().format('HH:mm') }}
+      </p>
+      5AI新生兒加護病房
+    </div>
   </div>
 </template>
 
@@ -124,8 +129,11 @@ const pageStore = useMainStoreStore();
   }
   .bottom-right {
     position: fixed;
-    bottom: 12px;
+    bottom: 24px;
     right: 24px;
+    p {
+      margin-bottom: 24px;
+    }
   }
 }
 </style>

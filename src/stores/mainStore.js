@@ -78,6 +78,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     isShowFromBirth: true,
     // data 從 cookie 紀錄的資料
     data: Cookies.get('data') || {},
+    // 是否顯示確認清除視窗
+    isShowClearDialog: false,
   }),
   getters: {
     weightDiff(state) {
