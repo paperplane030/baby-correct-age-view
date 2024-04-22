@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <div class="form" v-show="!pageStore.isShowResult">
     <div class="form-inner row justify-center items-center">
       <q-card class="form-card">
         <q-card-section class="text-center">

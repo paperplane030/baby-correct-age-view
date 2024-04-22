@@ -1,10 +1,10 @@
 <template>
-  <div class="display column justify-center">
+  <div class="display column justify-center" v-show="pageStore.isShowResult">
     <p class="top-right text-h2 text-weight-bold">
       床號 :5A99- {{ pageStore.bed }}
     </p>
     <div class="text-h1 text-center text-weight-bolder">
-      {{ moment().format('YYYY 年 M 月 DD 日') }}
+      {{ pageStore.clock.format('YYYY 年 M 月 DD 日') }}
     </div>
     <div class="detail column">
       <div class="detail-item row text-h2 text-weight-bold">
@@ -87,7 +87,7 @@
     />
     <div class="bottom-right text-h3 text-weight-bold text-center">
       <p class="text-h2 text-weight-bold">
-        {{ moment().format('HH:mm') }}
+        {{ pageStore.clock.format('HH:mm') }}
       </p>
       5AI新生兒加護病房
     </div>
@@ -96,6 +96,7 @@
 
 <script setup lang="ts">
 // vue 相關
+import { onUnmounted } from 'vue';
 // 元件 相關
 // lib 相關
 import moment from 'moment';
@@ -104,6 +105,13 @@ import { useMainStoreStore } from '@/stores/mainStore';
 // data 相關
 
 const pageStore = useMainStoreStore();
+const clockStart = setInterval(() => {
+  pageStore.clock = moment();
+}, 1000);
+
+onUnmounted(() => {
+  clearInterval(clockStart);
+});
 </script>
 
 <style lang="scss" scoped>

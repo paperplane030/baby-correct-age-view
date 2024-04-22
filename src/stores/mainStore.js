@@ -80,6 +80,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     data: Cookies.get('data') || {},
     // 是否顯示確認清除視窗
     isShowClearDialog: false,
+    // 時鐘
+    clock: '',
   }),
   getters: {
     weightDiff(state) {

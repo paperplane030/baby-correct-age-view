@@ -1,6 +1,6 @@
 <template>
-  <Form v-show="!pageStore.isShowResult" />
-  <Display v-show="pageStore.isShowResult" />
+  <Form />
+  <Display />
   <NurseOptionsDialog />
   <q-icon
     :name="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
@@ -13,8 +13,6 @@
 import Form from './components/Form.vue';
 import NurseOptionsDialog from './components/NurseOptionsDialog.vue';
 import Display from './components/Display.vue';
-
-import { Cookies, AppFullscreen } from 'quasar';
 
 import { useMainStoreStore } from '@/stores/mainStore';
 const pageStore = useMainStoreStore();
