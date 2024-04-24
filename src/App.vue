@@ -1,7 +1,7 @@
 <template>
   <Form />
   <Display />
-  <NurseOptionsDialog />
+  <NurseOptionsDialog />  
   <q-icon
     :name="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
     class="full-screen"

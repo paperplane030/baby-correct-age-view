@@ -1,5 +1,5 @@
 <template>
-  <div class="display column justify-center" v-show="pageStore.isShowResult">
+  <div class="display column justify-center" v-if="pageStore.isShowResult">
     <p class="top-right text-h2 text-weight-bold">
       床號 :5A99- {{ pageStore.bed }}
     </p>
@@ -48,7 +48,9 @@
         </template>
       </div>
       <div class="detail-item row text-h2 text-weight-bold">
-        <div class="text-center">今日體重</div>
+        <div class="text-center">
+          {{pageStore.isNotTodayMeasure ? moment(pageStore.measureDate).format('MM/DD') : '今日'}} 體重
+        </div>
         <div class="text-center text-primary">
           &nbsp;{{ pageStore.todayWeight }}&nbsp;
         </div>

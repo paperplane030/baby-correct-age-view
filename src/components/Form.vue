@@ -1,5 +1,5 @@
 <template>
-  <div class="form" v-show="!pageStore.isShowResult">
+  <div class="form" v-if="!pageStore.isShowResult">
     <div class="form-inner row justify-center items-center">
       <q-card class="form-card">
         <q-card-section class="text-center">
@@ -120,7 +120,7 @@
               <div class="col-auto">
                 <div class="label q-mr-md text-dark">本日體重</div>
               </div>
-              <div class="row items-center">
+              <div class="row items-center q-mb-md">
                 <div class="col col-md-auto">
                   <q-input
                     outlined
@@ -140,6 +140,41 @@
                   color="primary"
                   @click="pageStore.updateWeight"
                 ></q-icon>
+               
+              </div>
+              <div class="row items-center">
+                <div class="label q-ml-md text-dark"></div>
+                <q-checkbox
+                class="q-mr-md"
+                v-model="pageStore.isNotTodayMeasure"
+                @update:model-value="pageStore.measureDate = ''"
+                label="非當日測量，測量日"
+              ></q-checkbox>
+              <q-input
+                  outlined
+                  dense
+                  v-model="pageStore.measureDate"
+                  lazy-rules
+                  hide-bottom-space
+                  :disable="!pageStore.isNotTodayMeasure"
+                >
+                  <template v-slot:append>
+                    <q-icon name="calendar_month" class="cursor-pointer">
+                      <q-popup-proxy
+                        transition-show="scale"
+                        transition-hide="scale"
+                        ref="qDate"
+                      >
+                        <q-date
+                          class="text-dark"
+                          v-model="pageStore.measureDate"
+                          mask="YYYY/MM/DD"
+                        >
+                        </q-date>
+                      </q-popup-proxy>
+                    </q-icon>
+                  </template>
+                </q-input>
               </div>
             </div>
             <div class="form-item row items-center text-dark">

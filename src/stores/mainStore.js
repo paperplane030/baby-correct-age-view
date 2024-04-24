@@ -28,6 +28,10 @@ export const useMainStoreStore = defineStore('mainStore', {
     prevWeight: '',
     // 本日體重
     todayWeight: '',
+    // 是否當日測量
+    isNotTodayMeasure : false,
+    // 非當日測量日期
+    measureDate: '',
     // 餵食量
     feedCount: '',
     // 每小時餵食量
@@ -107,6 +111,8 @@ export const useMainStoreStore = defineStore('mainStore', {
         this.nurse = this.data.nurse;
         this.feedCount = this.data.feedCount;
         this.feedPerHour = this.data.feedPerHour;
+        this.isNotTodayMeasure = this.data.isNotTodayMeasure;
+        this.measureDate = this.data.measureDate;
       }
     },
     addDefaultNurseOptions() {
@@ -195,6 +201,8 @@ export const useMainStoreStore = defineStore('mainStore', {
         nurse: this.nurse,
         feedCount: this.feedCount,
         feedPerHour: this.feedPerHour,
+        isNotTodayMeasure: this.isNotTodayMeasure,
+        measureDate: this.measureDate,
       });
     },
   },
