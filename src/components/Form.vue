@@ -186,8 +186,7 @@
                   <q-input
                     outlined
                     dense
-                    type="number"
-                    v-model.number="pageStore.feedCount"
+                    v-model="pageStore.feedCount"
                     lazy-rules
                     hide-bottom-space
                   >
