@@ -1,5 +1,5 @@
 <template>
-  <div class="form" v-if="!pageStore.isShowResult">
+  <div class="form">
     <div class="form-inner row justify-center items-center">
       <q-card class="form-card">
         <q-card-section class="text-center">
@@ -41,16 +41,12 @@
                 >
                   <template v-slot:append>
                     <q-icon name="calendar_month" class="cursor-pointer">
-                      <q-popup-proxy
-                        transition-show="scale"
-                        transition-hide="scale"
-                        ref="qDate"
-                      >
+                      <q-popup-proxy ref="qDatePicker">
                         <q-date
                           class="text-dark"
                           v-model="pageStore.form.date"
                           mask="YYYY/MM/DD"
-                          v-close-popup
+                          @update:model-value="qDatePicker?.hide()"
                         >
                         </q-date>
                       </q-popup-proxy>
@@ -160,16 +156,12 @@
                 >
                   <template v-slot:append>
                     <q-icon name="calendar_month" class="cursor-pointer">
-                      <q-popup-proxy
-                        transition-show="scale"
-                        transition-hide="scale"
-                        ref="qDate"
-                      >
+                      <q-popup-proxy ref="qDatePicker2">
                         <q-date
                           class="text-dark"
                           v-model="pageStore.measureDate"
                           mask="YYYY/MM/DD"
-                          v-close-popup
+                          @update:model-value="qDatePicker2?.hide()"
                         >
                         </q-date>
                       </q-popup-proxy>
@@ -300,6 +292,7 @@
 
 <script setup lang="ts">
 // vue 相關
+import { ref } from 'vue';
 // 元件 相關
 // lib 相關
 // store 相關
@@ -308,6 +301,9 @@ import { useMainStoreStore } from '@/stores/mainStore';
 
 const pageStore = useMainStoreStore();
 pageStore.init();
+
+const qDatePicker = ref(null);
+const qDatePicker2 = ref(null);
 </script>
 
 <style lang="scss" scoped>

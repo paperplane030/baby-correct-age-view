@@ -1,7 +1,7 @@
 <template>
-  <Form />
-  <Display />
-  <NurseOptionsDialog />  
+  <Form v-if="!pageStore.isShowResult" />
+  <Display v-else />
+  <NurseOptionsDialog />
   <q-icon
     :name="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
     class="full-screen"
