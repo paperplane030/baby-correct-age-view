@@ -50,6 +50,7 @@
                           class="text-dark"
                           v-model="pageStore.form.date"
                           mask="YYYY/MM/DD"
+                          v-close-popup
                         >
                         </q-date>
                       </q-popup-proxy>
@@ -140,17 +141,16 @@
                   color="primary"
                   @click="pageStore.updateWeight"
                 ></q-icon>
-               
               </div>
               <div class="row items-center">
                 <div class="label q-ml-md text-dark"></div>
                 <q-checkbox
-                class="q-mr-md"
-                v-model="pageStore.isNotTodayMeasure"
-                @update:model-value="pageStore.measureDate = ''"
-                label="非當日測量，測量日"
-              ></q-checkbox>
-              <q-input
+                  class="q-mr-md"
+                  v-model="pageStore.isNotTodayMeasure"
+                  @update:model-value="pageStore.measureDate = ''"
+                  label="非當日測量，測量日"
+                ></q-checkbox>
+                <q-input
                   outlined
                   dense
                   v-model="pageStore.measureDate"
@@ -169,6 +169,7 @@
                           class="text-dark"
                           v-model="pageStore.measureDate"
                           mask="YYYY/MM/DD"
+                          v-close-popup
                         >
                         </q-date>
                       </q-popup-proxy>
