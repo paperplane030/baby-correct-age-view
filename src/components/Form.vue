@@ -38,6 +38,7 @@
                   v-model="pageStore.form.date"
                   lazy-rules
                   hide-bottom-space
+                  :rules="[(val) => !!val || '必填']"
                 >
                   <template v-slot:append>
                     <q-icon name="calendar_month" class="cursor-pointer">
@@ -92,6 +93,42 @@
                 v-model="pageStore.isShowFromBirth"
                 label="顯示矯正年齡"
               ></q-checkbox>
+              <div class="row items-center q-mt-md">
+                <div class="label q-ml-md text-dark"></div>
+                <q-checkbox
+                  class="q-mr-md"
+                  v-model="pageStore.isShowSurgeryDate"
+                  @update:model-value="pageStore.surgeryDate = ''"
+                  label="顯示手術日期，手術日期"
+                ></q-checkbox>
+                <q-input
+                  outlined
+                  dense
+                  v-model="pageStore.surgeryDate"
+                  hide-bottom-space
+                  :rules="[(val) => !!val || '必填']"
+                  :disable="!pageStore.isShowSurgeryDate"
+                >
+                  <template v-slot:append>
+                    <q-icon name="calendar_month" class="cursor-pointer">
+                      <q-popup-proxy ref="qDatePicker3">
+                        <q-date
+                          class="text-dark"
+                          v-model="pageStore.surgeryDate"
+                          mask="YYYY/MM/DD"
+                          :options="
+                            (date) =>
+                              date <=
+                              moment(pageStore.clock).format('YYYY/MM/DD')
+                          "
+                          @update:model-value="qDatePicker3?.hide()"
+                        >
+                        </q-date>
+                      </q-popup-proxy>
+                    </q-icon>
+                  </template>
+                </q-input>
+              </div>
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
@@ -153,6 +190,7 @@
                   lazy-rules
                   hide-bottom-space
                   :disable="!pageStore.isNotTodayMeasure"
+                  :rules="[(val) => !!val || '必填']"
                 >
                   <template v-slot:append>
                     <q-icon name="calendar_month" class="cursor-pointer">
@@ -161,6 +199,11 @@
                           class="text-dark"
                           v-model="pageStore.measureDate"
                           mask="YYYY/MM/DD"
+                          :options="
+                            (date) =>
+                              date <=
+                              moment(pageStore.clock).format('YYYY/MM/DD')
+                          "
                           @update:model-value="qDatePicker2?.hide()"
                         >
                         </q-date>
@@ -295,6 +338,7 @@
 import { ref } from 'vue';
 // 元件 相關
 // lib 相關
+import moment from 'moment';
 // store 相關
 import { useMainStoreStore } from '@/stores/mainStore';
 // data 相關
@@ -304,6 +348,7 @@ pageStore.init();
 
 const qDatePicker = ref(null);
 const qDatePicker2 = ref(null);
+const qDatePicker3 = ref(null);
 </script>
 
 <style lang="scss" scoped>

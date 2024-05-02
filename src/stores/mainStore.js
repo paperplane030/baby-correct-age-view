@@ -29,7 +29,7 @@ export const useMainStoreStore = defineStore('mainStore', {
     // 本日體重
     todayWeight: '',
     // 是否當日測量
-    isNotTodayMeasure : false,
+    isNotTodayMeasure: false,
     // 非當日測量日期
     measureDate: '',
     // 餵食量
@@ -85,7 +85,13 @@ export const useMainStoreStore = defineStore('mainStore', {
     // 是否顯示確認清除視窗
     isShowClearDialog: false,
     // 時鐘
-    clock: '',
+    clock: moment(),
+    // 是否顯示手術日期
+    isShowSurgeryDate: false,
+    // 手術日期
+    surgeryDate: '',
+    // 術後第幾天
+    fromSurgery: null,
   }),
   getters: {
     weightDiff(state) {
@@ -100,19 +106,22 @@ export const useMainStoreStore = defineStore('mainStore', {
   },
   actions: {
     init() {
+      this.data = Cookies.get('data') || {};
       // 如果 data 有值，則將 data 資料填入 state
       if (Object.keys(this.data).length !== 0) {
-        this.form.date = this.data.date;
-        this.form.week = this.data.week;
-        this.form.days = this.data.days;
-        this.bed = this.data.bed;
-        this.prevWeight = this.data.prevWeight;
-        this.todayWeight = this.data.todayWeight;
-        this.nurse = this.data.nurse;
-        this.feedCount = this.data.feedCount;
-        this.feedPerHour = this.data.feedPerHour;
-        this.isNotTodayMeasure = this.data.isNotTodayMeasure;
-        this.measureDate = this.data.measureDate;
+        this.form.date = this.data.date || '';
+        this.form.week = this.data.week || 0;
+        this.form.days = this.data.days || 0;
+        this.bed = this.data.bed || '';
+        this.prevWeight = this.data.prevWeight || '';
+        this.todayWeight = this.data.todayWeight || '';
+        this.nurse = this.data.nurse || '';
+        this.feedCount = this.data.feedCount || '';
+        this.feedPerHour = this.data.feedPerHour || '';
+        this.isNotTodayMeasure = this.data.isNotTodayMeasure || false;
+        this.measureDate = this.data.measureDate || '';
+        this.isShowSurgeryDate = this.data.isShowSurgeryDate || false;
+        this.surgeryDate = this.data.surgeryDate || '';
       }
     },
     addDefaultNurseOptions() {
@@ -167,6 +176,7 @@ export const useMainStoreStore = defineStore('mainStore', {
       const today = moment();
       // 結果 1
       this.result.fromBirth = today.diff(moment(this.form.date), 'days') + 1;
+      this.fromSurgery = today.diff(moment(this.surgeryDate), 'days');
       // 今天跟足月日期的關係
       const base = this.form.week * 7 + this.form.days;
       const fullMonthDays = 280 - base;
@@ -203,6 +213,8 @@ export const useMainStoreStore = defineStore('mainStore', {
         feedPerHour: this.feedPerHour,
         isNotTodayMeasure: this.isNotTodayMeasure,
         measureDate: this.measureDate,
+        isShowSurgeryDate: this.isShowSurgeryDate,
+        surgeryDate: this.surgeryDate,
       });
     },
   },

@@ -4,7 +4,7 @@
       床號 :5A99- {{ pageStore.bed }}
     </p>
     <div class="text-h1 text-center text-weight-bolder">
-      {{ pageStore.clock.format('YYYY 年 M 月 DD 日') }}
+      {{ pageStore.clock?.format('YYYY 年 M 月 DD 日') }}
     </div>
     <div class="detail column">
       <div class="detail-item row text-h2 text-weight-bold">
@@ -13,6 +13,13 @@
           &nbsp;{{ pageStore.result.fromBirth }}&nbsp;
         </div>
         天
+        <template v-if="pageStore.isShowSurgeryDate">
+          <div class="text-center">，術後第</div>
+          <div class="text-center text-primary">
+            &nbsp;{{ pageStore.fromSurgery }}&nbsp;
+          </div>
+          天
+        </template>
       </div>
       <div
         class="detail-item row text-h2 text-weight-bold"
@@ -103,7 +110,7 @@
 
 <script setup lang="ts">
 // vue 相關
-import { onUnmounted } from 'vue';
+import { onUnmounted, ref } from 'vue';
 // 元件 相關
 // lib 相關
 import moment from 'moment';
