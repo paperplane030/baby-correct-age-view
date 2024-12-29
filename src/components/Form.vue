@@ -132,6 +132,26 @@
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">
+                <div class="label q-mr-md text-dark">出生體重</div>
+              </div>
+              <div class="row items-center">
+                <div class="col col-md-auto">
+                  <q-input
+                    outlined
+                    dense
+                    type="number"
+                    v-model.number="pageStore.birthWeight"
+                    lazy-rules
+                    :rules="[(val) => !!val || '必填']"
+                    hide-bottom-space
+                  >
+                  </q-input>
+                </div>
+                <div class="col-auto q-mx-md">克</div>
+              </div>
+            </div>
+            <div class="form-item row items-center text-dark">
+              <div class="col-auto">
                 <div class="label q-mr-md text-dark">前次體重</div>
               </div>
               <div class="row items-center">

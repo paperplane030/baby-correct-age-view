@@ -3,6 +3,10 @@
     <p class="top-right text-h2 text-weight-bold">
       床號 :5A99- {{ pageStore.bed }}
     </p>
+    <p class="top-right-sub text-h4 text-weight-bold">
+      出生體重 : {{ pageStore.birthWeight }} 公克 <br />
+      出生週數 : {{ pageStore.form.week }} 週
+    </p>
     <div class="text-h1 text-center text-weight-bolder">
       {{ pageStore.clock?.format('YYYY 年 M 月 DD 日') }}
     </div>
@@ -147,6 +151,11 @@ onUnmounted(() => {
   .top-right {
     position: fixed;
     top: 32px;
+    left: 24px;
+  }
+  .top-right-sub {
+    position: fixed;
+    top: 128px;
     left: 24px;
   }
   .bottom-right {

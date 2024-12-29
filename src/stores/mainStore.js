@@ -24,6 +24,8 @@ export const useMainStoreStore = defineStore('mainStore', {
       fullMonth_days: null,
       fullMonthDate: null,
     },
+    // 出生體重
+    birthWeight: '',
     // 前次體重
     prevWeight: '',
     // 本日體重
@@ -73,6 +75,9 @@ export const useMainStoreStore = defineStore('mainStore', {
       '林詠淇',
       '王玉婷',
       '賴莘妮',
+      '蘇易秀',
+      '林芯瑜',
+      '陳予婷',
     ],
     // 是否顯示修改護理師選項彈窗
     isShowNurseDialog: false,
@@ -122,6 +127,7 @@ export const useMainStoreStore = defineStore('mainStore', {
         this.measureDate = this.data.measureDate || '';
         this.isShowSurgeryDate = this.data.isShowSurgeryDate || false;
         this.surgeryDate = this.data.surgeryDate || '';
+        this.birthWeight = this.data.birthWeight || '';
       }
     },
     addDefaultNurseOptions() {
@@ -215,6 +221,7 @@ export const useMainStoreStore = defineStore('mainStore', {
         measureDate: this.measureDate,
         isShowSurgeryDate: this.isShowSurgeryDate,
         surgeryDate: this.surgeryDate,
+        birthWeight: this.birthWeight,
       });
     },
   },
