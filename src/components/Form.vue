@@ -304,7 +304,6 @@
                     dense
                     type="text"
                     v-model.number="pageStore.mainDoctor"
-                    :rules="[(val) => !!val || '必填']"
                     hide-bottom-space
                   >
                   </q-input>
@@ -332,7 +331,7 @@
               <div class="col-auto">
                 <div class="label q-mr-md text-dark">住院醫師</div>
               </div>
-              <div class="row items-center">
+              <div class="row items-center q-mr-md">
                 <div class="col col-md-auto">
                   <q-input
                     outlined
@@ -344,14 +343,24 @@
                   >
                   </q-input>
                 </div>
-                <div class="col-auto q-ml-md">
-                  <q-checkbox
-                    class="checkbox"
-                    v-model="pageStore.isShowResidentDoctor"
-                    label="顯示住院醫師"
-                    @update:model-value="handleUpdateResidentDoctor"
-                  ></q-checkbox>
-                </div>
+              </div>
+              <div class="col-auto">
+                <q-btn
+                  type="button"
+                  no-caps
+                  unelevated
+                  label="編輯住院醫師"
+                  color="accent"
+                  @click="pageStore.isShowResidentDoctorDialog = true"
+                />
+              </div>
+              <div class="col-auto q-ml-md">
+                <q-checkbox
+                  class="checkbox"
+                  v-model="pageStore.isShowResidentDoctor"
+                  label="顯示住院醫師"
+                  @update:model-value="handleUpdateResidentDoctor"
+                ></q-checkbox>
               </div>
             </div>
             <div class="form-item row items-center text-dark">
@@ -365,7 +374,6 @@
                     dense
                     type="text"
                     v-model.number="pageStore.mainNurse"
-                    :rules="[(val) => !!val || '必填']"
                     hide-bottom-space
                   >
                   </q-input>

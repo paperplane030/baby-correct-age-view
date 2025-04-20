@@ -122,6 +122,10 @@ export const useMainStoreStore = defineStore('mainStore', {
     // 是否顯示專科護理師
     isShowMainNurse: false,
     /** 住院醫師 */
+    // 是否顯示修改住院醫師選項彈窗
+    isShowResidentDoctorDialog: false,
+    // 住院醫師選項
+    residentDoctorOptions: Cookies.get('resident_doctor_options') || [],
     // 住院醫師
     residentDoctor: '',
     // 是否顯示住院醫師
@@ -332,6 +336,35 @@ export const useMainStoreStore = defineStore('mainStore', {
     selectMainNurse(option) {
       this.mainNurse = option;
       this.isShowMainNurseDialog = false;
+    },
+    addResidentDoctorOption(option) {
+      if (!option) {
+        Notify.create({
+          message: '請輸入住院醫師姓名',
+          color: 'negative',
+          position: 'top',
+          timeout: 3000,
+        });
+        return;
+      }
+      if (this.residentDoctorOptions.includes(option)) {
+        return;
+      }
+      this.residentDoctorOptions.push(option);
+      Cookies.set('resident_doctor_options', this.residentDoctorOptions);
+    },
+    deleteResidentDoctorOption(option) {
+      this.residentDoctorOptions = this.residentDoctorOptions.filter(
+        (item) => item !== option
+      );
+      Cookies.set('resident_doctor_options', this.residentDoctorOptions);
+      if (this.residentDoctorOptions.length === 0) {
+        this.residentDoctor = '';
+      }
+    },
+    selectResidentDoctor(option) {
+      this.residentDoctor = option;
+      this.isShowResidentDoctorDialog = false;
     },
   },
 });

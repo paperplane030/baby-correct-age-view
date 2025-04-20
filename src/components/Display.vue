@@ -101,21 +101,21 @@
         <template v-if="pageStore.isShowMainDoctor">
           <div class="title text-center">主治<br />醫師</div>
           &nbsp;
-          <div class="text-center text-h2 text-weight-bold text-primary">
+          <div class="name text-center text-h2 text-weight-bold">
             {{ pageStore.mainDoctor }}
           </div>
         </template>
         <template v-if="pageStore.isShowResidentDoctor">
           <div class="title text-center q-ml-lg">住院<br />醫師</div>
           &nbsp;
-          <div class="text-center text-h2 text-weight-bold text-primary">
+          <div class="text-center text-h2 text-weight-bold">
             {{ pageStore.residentDoctor }}
           </div>
         </template>
         <template v-if="pageStore.isShowMainNurse">
           <div class="title text-center q-ml-lg">專科<br />護理師</div>
           &nbsp;
-          <div class="text-center text-h2 text-weight-bold text-primary">
+          <div class="text-center text-h2 text-weight-bold">
             {{ pageStore.mainNurse }}
           </div>
         </template>
@@ -170,6 +170,9 @@ onUnmounted(() => {
       .title {
         padding: 16px;
         background-color: #ffc000;
+      }
+      .name {
+        margin-right: 1.5em;
       }
     }
   }

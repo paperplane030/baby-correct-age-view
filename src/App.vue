@@ -4,6 +4,7 @@
   <NurseOptionsDialog />
   <MainDoctorDialog />
   <MainNurseDialog />
+  <ResidentDoctorDialog />
   <q-icon
     :name="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
     class="full-screen"
@@ -16,6 +17,7 @@ import Form from './components/Form.vue';
 import NurseOptionsDialog from './components/NurseOptionsDialog.vue';
 import MainDoctorDialog from './components/MainDoctorDialog.vue';
 import MainNurseDialog from './components/MainNurseDialog.vue';
+import ResidentDoctorDialog from './components/ResidentDoctorDialog.vue';
 import Display from './components/Display.vue';
 
 import { useMainStoreStore } from '@/stores/mainStore';
