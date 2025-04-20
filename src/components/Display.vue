@@ -5,7 +5,7 @@
     </p>
     <p class="top-right-sub text-h4 text-weight-bold">
       出生體重 : {{ pageStore.birthWeight }} 公克 <br />
-      出生週數 : {{ pageStore.form.week }} 週
+      出生週數 : {{ pageStore.form.week }} 週 {{ pageStore.form.days }} 天
     </p>
     <div class="text-h1 text-center text-weight-bolder">
       {{ pageStore.clock?.format('YYYY 年 M 月 DD 日') }}
@@ -95,6 +95,31 @@
         &nbsp;
         <div class="text-center text-primary">{{ pageStore.nurse }}</div>
       </div>
+      <div
+        class="detail-item row items-center q-gutter-md text-h3 text-weight-bold"
+      >
+        <template v-if="pageStore.isShowMainDoctor">
+          <div class="title text-center">主治<br />醫師</div>
+          &nbsp;
+          <div class="text-center text-h2 text-weight-bold text-primary">
+            {{ pageStore.mainDoctor }}
+          </div>
+        </template>
+        <template v-if="pageStore.isShowResidentDoctor">
+          <div class="title text-center q-ml-lg">住院<br />醫師</div>
+          &nbsp;
+          <div class="text-center text-h2 text-weight-bold text-primary">
+            {{ pageStore.residentDoctor }}
+          </div>
+        </template>
+        <template v-if="pageStore.isShowMainNurse">
+          <div class="title text-center q-ml-lg">專科<br />護理師</div>
+          &nbsp;
+          <div class="text-center text-h2 text-weight-bold text-primary">
+            {{ pageStore.mainNurse }}
+          </div>
+        </template>
+      </div>
     </div>
 
     <q-icon
@@ -137,10 +162,16 @@ onUnmounted(() => {
   position: relative;
   height: 100vh;
   .detail {
-    gap: 5rem;
+    gap: 4rem;
     width: 1500px;
     margin: 5rem auto 0px;
     background-color: rgba(255, 255, 255, 0.4);
+    .detail-item {
+      .title {
+        padding: 16px;
+        background-color: #ffc000;
+      }
+    }
   }
   .back-btn {
     position: fixed;

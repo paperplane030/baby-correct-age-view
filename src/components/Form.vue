@@ -293,6 +293,103 @@
                 />
               </div>
             </div>
+            <div class="form-item row items-center text-dark">
+              <div class="col-auto">
+                <div class="label q-mr-md text-dark">主治醫師</div>
+              </div>
+              <div class="row items-center q-mr-md">
+                <div class="col col-md-auto">
+                  <q-input
+                    outlined
+                    dense
+                    type="text"
+                    v-model.number="pageStore.mainDoctor"
+                    :rules="[(val) => !!val || '必填']"
+                    hide-bottom-space
+                  >
+                  </q-input>
+                </div>
+              </div>
+              <div class="col-auto">
+                <q-btn
+                  type="button"
+                  no-caps
+                  unelevated
+                  label="編輯主治醫師"
+                  color="accent"
+                  @click="pageStore.isShowMainDoctorDialog = true"
+                />
+              </div>
+              <div class="col-auto q-ml-md">
+                <q-checkbox
+                  class="checkbox"
+                  v-model="pageStore.isShowMainDoctor"
+                  label="顯示主治醫師"
+                ></q-checkbox>
+              </div>
+            </div>
+            <div class="form-item row items-center text-dark">
+              <div class="col-auto">
+                <div class="label q-mr-md text-dark">住院醫師</div>
+              </div>
+              <div class="row items-center">
+                <div class="col col-md-auto">
+                  <q-input
+                    outlined
+                    dense
+                    type="text"
+                    v-model="pageStore.residentDoctor"
+                    lazy-rules
+                    hide-bottom-space
+                  >
+                  </q-input>
+                </div>
+                <div class="col-auto q-ml-md">
+                  <q-checkbox
+                    class="checkbox"
+                    v-model="pageStore.isShowResidentDoctor"
+                    label="顯示住院醫師"
+                    @update:model-value="handleUpdateResidentDoctor"
+                  ></q-checkbox>
+                </div>
+              </div>
+            </div>
+            <div class="form-item row items-center text-dark">
+              <div class="col-auto">
+                <div class="label q-mr-md text-dark">專科護理師</div>
+              </div>
+              <div class="row items-center q-mr-md">
+                <div class="col col-md-auto">
+                  <q-input
+                    outlined
+                    dense
+                    type="text"
+                    v-model.number="pageStore.mainNurse"
+                    :rules="[(val) => !!val || '必填']"
+                    hide-bottom-space
+                  >
+                  </q-input>
+                </div>
+              </div>
+              <div class="col-auto">
+                <q-btn
+                  type="button"
+                  no-caps
+                  unelevated
+                  label="編輯專科護理師"
+                  color="accent"
+                  @click="pageStore.isShowMainNurseDialog = true"
+                />
+              </div>
+              <div class="col-auto q-ml-md">
+                <q-checkbox
+                  class="checkbox"
+                  v-model="pageStore.isShowMainNurse"
+                  label="顯示專科護理師"
+                  @update:model-value="handleUpdateMainNurse"
+                ></q-checkbox>
+              </div>
+            </div>
             <div class="form-item row justify-between q-mt-lg">
               <q-btn
                 class="text-body1 q-mr-xl"
@@ -369,6 +466,19 @@ pageStore.init();
 const qDatePicker = ref(null);
 const qDatePicker2 = ref(null);
 const qDatePicker3 = ref(null);
+
+const handleUpdateResidentDoctor = (val) => {
+  pageStore.isShowResidentDoctor = val;
+  if (pageStore.isShowMainNurse) {
+    pageStore.isShowMainNurse = false;
+  }
+};
+const handleUpdateMainNurse = (val) => {
+  pageStore.isShowMainNurse = val;
+  if (pageStore.isShowResidentDoctor) {
+    pageStore.isShowResidentDoctor = false;
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -377,7 +487,8 @@ const qDatePicker3 = ref(null);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   &-inner {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 16px 0px;
   }
   &-item {
     .checkbox {

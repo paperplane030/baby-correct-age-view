@@ -2,6 +2,8 @@
   <Form v-if="!pageStore.isShowResult" />
   <Display v-else />
   <NurseOptionsDialog />
+  <MainDoctorDialog />
+  <MainNurseDialog />
   <q-icon
     :name="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
     class="full-screen"
@@ -12,6 +14,8 @@
 <script setup>
 import Form from './components/Form.vue';
 import NurseOptionsDialog from './components/NurseOptionsDialog.vue';
+import MainDoctorDialog from './components/MainDoctorDialog.vue';
+import MainNurseDialog from './components/MainNurseDialog.vue';
 import Display from './components/Display.vue';
 
 import { useMainStoreStore } from '@/stores/mainStore';

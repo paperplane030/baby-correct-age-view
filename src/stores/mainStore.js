@@ -2,6 +2,8 @@ import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import { Cookies, Notify } from 'quasar';
 import moment from 'moment';
+import MainDoctor from '../data/MainDoctor.js';
+import MainNurse from '../data/MainNurse.js';
 
 export const useMainStoreStore = defineStore('mainStore', {
   state: () => ({
@@ -97,6 +99,33 @@ export const useMainStoreStore = defineStore('mainStore', {
     surgeryDate: '',
     // 術後第幾天
     fromSurgery: null,
+    /** 主治醫師 */
+    // 是否顯示修改主治醫師選項彈窗
+    isShowMainDoctorDialog: false,
+    // 預設主治醫師
+    defaultMainDoctorOptions: MainDoctor,
+    // 主治醫師選項
+    mainDoctorOptions: Cookies.get('main_doctor_options') || [],
+    // 主治醫師
+    mainDoctor: '',
+    // 是否顯示主治醫師
+    isShowMainDoctor: false,
+    /** 專科護理師 */
+    // 是否顯示修改專科護理師選項彈窗
+    isShowMainNurseDialog: false,
+    // 預設專科護理師
+    defaultMainNurseOptions: MainNurse,
+    // 專科護理師選項
+    mainNurseOptions: Cookies.get('main_nurse_options') || [],
+    // 專科護理師
+    mainNurse: '',
+    // 是否顯示專科護理師
+    isShowMainNurse: false,
+    /** 住院醫師 */
+    // 住院醫師
+    residentDoctor: '',
+    // 是否顯示住院醫師
+    isShowResidentDoctor: false,
   }),
   getters: {
     weightDiff(state) {
@@ -128,6 +157,12 @@ export const useMainStoreStore = defineStore('mainStore', {
         this.isShowSurgeryDate = this.data.isShowSurgeryDate || false;
         this.surgeryDate = this.data.surgeryDate || '';
         this.birthWeight = this.data.birthWeight || '';
+        this.mainDoctor = this.data.mainDoctor || '';
+        this.mainNurse = this.data.mainNurse || '';
+        this.residentDoctor = this.data.residentDoctor || '';
+        this.isShowMainDoctor = this.data.isShowMainDoctor || false;
+        this.isShowMainNurse = this.data.isShowMainNurse || false;
+        this.isShowResidentDoctor = this.data.isShowResidentDoctor || false;
       }
     },
     addDefaultNurseOptions() {
@@ -222,7 +257,81 @@ export const useMainStoreStore = defineStore('mainStore', {
         isShowSurgeryDate: this.isShowSurgeryDate,
         surgeryDate: this.surgeryDate,
         birthWeight: this.birthWeight,
+        mainDoctor: this.mainDoctor,
+        mainNurse: this.mainNurse,
+        residentDoctor: this.residentDoctor,
+        isShowMainDoctor: this.isShowMainDoctor,
+        isShowMainNurse: this.isShowMainNurse,
+        isShowResidentDoctor: this.isShowResidentDoctor,
       });
+    },
+    addDefaultMainDoctorOptions() {
+      this.mainDoctorOptions = [];
+      this.mainDoctorOptions = this.defaultMainDoctorOptions;
+      Cookies.set('main_doctor_options', this.mainDoctorOptions);
+    },
+    addMainDoctorOption(option) {
+      if (!option) {
+        Notify.create({
+          message: '請輸入主治醫師姓名',
+          color: 'negative',
+          position: 'top',
+          timeout: 3000,
+        });
+        return;
+      }
+      if (this.mainDoctorOptions.includes(option)) {
+        return;
+      }
+      this.mainDoctorOptions.push(option);
+      Cookies.set('main_doctor_options', this.mainDoctorOptions);
+    },
+    deleteMainDoctorOption(option) {
+      this.mainDoctorOptions = this.mainDoctorOptions.filter(
+        (item) => item !== option
+      );
+      Cookies.set('main_doctor_options', this.mainDoctorOptions);
+      if (this.mainDoctorOptions.length === 0) {
+        this.mainDoctor = '';
+      }
+    },
+    selectMainDoctor(option) {
+      this.mainDoctor = option;
+      this.isShowMainDoctorDialog = false;
+    },
+    addDefaultMainNurseOptions() {
+      this.mainNurseOptions = [];
+      this.mainNurseOptions = this.defaultMainNurseOptions;
+      Cookies.set('main_nurse_options', this.mainNurseOptions);
+    },
+    addMainNurseOption(option) {
+      if (!option) {
+        Notify.create({
+          message: '請輸入專科護理師姓名',
+          color: 'negative',
+          position: 'top',
+          timeout: 3000,
+        });
+        return;
+      }
+      if (this.mainNurseOptions.includes(option)) {
+        return;
+      }
+      this.mainNurseOptions.push(option);
+      Cookies.set('main_nurse_options', this.mainNurseOptions);
+    },
+    deleteMainNurseOption(option) {
+      this.mainNurseOptions = this.mainNurseOptions.filter(
+        (item) => item !== option
+      );
+      Cookies.set('main_nurse_options', this.mainNurseOptions);
+      if (this.mainNurseOptions.length === 0) {
+        this.mainNurse = '';
+      }
+    },
+    selectMainNurse(option) {
+      this.mainNurse = option;
+      this.isShowMainNurseDialog = false;
     },
   },
 });
