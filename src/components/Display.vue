@@ -11,7 +11,7 @@
       {{ pageStore.clock?.format('YYYY 年 M 月 DD 日') }}
     </div>
     <div class="detail column">
-      <div class="detail-item row text-h2 text-weight-bold">
+      <div class="detail-item row text-h2 text-weight-bolder">
         <div class="text-center">出生第</div>
         <div class="text-center text-primary">
           &nbsp;{{ pageStore.result.fromBirth }}&nbsp;
@@ -26,7 +26,7 @@
         </template>
       </div>
       <div
-        class="detail-item row text-h2 text-weight-bold"
+        class="detail-item row text-h2 text-weight-bolder"
         v-if="pageStore.isShowFromBirth"
       >
         <div class="text-center">矯正年齡</div>
@@ -58,7 +58,7 @@
           天
         </template>
       </div>
-      <div class="detail-item row text-h2 text-weight-bold">
+      <div class="detail-item row text-h2 text-weight-bolder">
         <div class="text-center">
           {{
             pageStore.isNotTodayMeasure
@@ -76,7 +76,7 @@
         </div>
         公克)
       </div>
-      <div class="detail-item row text-h2 text-weight-bold">
+      <div class="detail-item row text-h2 text-weight-bolder">
         <div class="text-center">餵食量</div>
         <template v-if="pageStore.feedCount">
           <div class="text-center text-primary">
@@ -90,32 +90,32 @@
         </template>
         <div class="text-center text-primary" v-else>&nbsp;禁食中</div>
       </div>
-      <div class="detail-item row text-h2 text-weight-bold">
+      <div class="detail-item row text-h2 text-weight-bolder">
         <div class="text-center">護理師</div>
         &nbsp;
         <div class="text-center text-primary">{{ pageStore.nurse }}</div>
       </div>
       <div
-        class="detail-item row items-center q-gutter-md text-h3 text-weight-bold"
+        class="detail-item row items-center q-gutter-md text-h3 text-weight-bolder"
       >
         <template v-if="pageStore.isShowMainDoctor">
           <div class="title text-center">主治<br />醫師</div>
           &nbsp;
-          <div class="name text-center text-h2 text-weight-bold">
+          <div class="name text-center text-h2 text-weight-bolder">
             {{ pageStore.mainDoctor }}
           </div>
         </template>
         <template v-if="pageStore.isShowResidentDoctor">
           <div class="title text-center q-ml-lg">住院<br />醫師</div>
           &nbsp;
-          <div class="text-center text-h2 text-weight-bold">
+          <div class="text-center text-h2 text-weight-bolder">
             {{ pageStore.residentDoctor }}
           </div>
         </template>
         <template v-if="pageStore.isShowMainNurse">
           <div class="title text-center q-ml-lg">專科<br />護理師</div>
           &nbsp;
-          <div class="text-center text-h2 text-weight-bold">
+          <div class="text-center text-h2 text-weight-bolder">
             {{ pageStore.mainNurse }}
           </div>
         </template>
@@ -162,7 +162,7 @@ onUnmounted(() => {
   position: relative;
   height: 100vh;
   .detail {
-    gap: 4rem;
+    gap: 3.5rem;
     width: 1500px;
     margin: 5rem auto 0px;
     background-color: rgba(255, 255, 255, 0.4);
