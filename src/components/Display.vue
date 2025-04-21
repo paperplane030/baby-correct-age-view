@@ -90,16 +90,21 @@
         </template>
         <div class="text-center text-primary" v-else>&nbsp;禁食中</div>
       </div>
-      <div class="detail-item row text-h2 text-weight-bolder">
+      <!-- <div class="detail-item row text-h2 text-weight-bolder">
         <div class="text-center">護理師</div>
         &nbsp;
         <div class="text-center text-primary">{{ pageStore.nurse }}</div>
-      </div>
+      </div> -->
       <div
         class="detail-item row items-center q-gutter-md text-h3 text-weight-bolder"
       >
+        <div class="title first text-center">護理師</div>
+        &nbsp;
+        <div class="name text-center text-h2 text-weight-bolder">
+          {{ pageStore.nurse }}
+        </div>
         <template v-if="pageStore.isShowMainDoctor">
-          <div class="title text-center">主治<br />醫師</div>
+          <div class="title text-center q-ml-lg">主治<br />醫師</div>
           &nbsp;
           <div class="name text-center text-h2 text-weight-bolder">
             {{ pageStore.mainDoctor }}
@@ -170,9 +175,14 @@ onUnmounted(() => {
       .title {
         padding: 16px;
         background-color: #ffc000;
+        &.first {
+          display: flex;
+          align-items: center;
+          min-height: 2.75em;
+        }
       }
       .name {
-        margin-right: 1.5em;
+        margin-right: 0.5em;
       }
     }
   }
