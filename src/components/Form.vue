@@ -30,7 +30,7 @@
               <q-checkbox
                 class="q-mr-md"
                 v-model="pageStore.isRDS"
-                label="RDS"
+                label="RDS收案"
               ></q-checkbox>
             </div>
             <div class="form-item row items-center text-dark">
