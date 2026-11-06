@@ -26,6 +26,12 @@
                   </q-select>
                 </div>
               </div>
+
+              <q-checkbox
+                class="q-mr-md"
+                v-model="pageStore.isRDS"
+                label="RDS"
+              ></q-checkbox>
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">

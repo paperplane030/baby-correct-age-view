@@ -1,7 +1,8 @@
 <template>
   <div class="display column justify-center">
-    <p class="top-right text-h2 text-weight-bold">
-      床號 :5A99- {{ pageStore.bed }}
+    <p class="top-right text-h2 text-weight-bold flex items-center">
+      <span> 床號 :5A99- {{ pageStore.bed }} </span>
+      <span class="rds q-ml-md" v-if="pageStore.isRDS">RDS</span>
     </p>
     <p class="top-right-sub text-h4 text-weight-bold">
       出生體重 : {{ pageStore.birthWeight }} 公克 <br />
@@ -144,7 +145,7 @@
 
 <script setup lang="ts">
 // vue 相關
-import { onUnmounted, ref } from 'vue';
+import { onUnmounted } from 'vue';
 // 元件 相關
 // lib 相關
 import moment from 'moment';
@@ -209,6 +210,13 @@ onUnmounted(() => {
     p {
       margin-bottom: 24px;
     }
+  }
+  .rds {
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 3rem;
+    background-color: #fedd5a;
+    color: #fff;
   }
 }
 </style>

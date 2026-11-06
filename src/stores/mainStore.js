@@ -1,7 +1,6 @@
-import { ref, computed } from 'vue';
+import moment from 'moment';
 import { defineStore } from 'pinia';
 import { Cookies, Notify } from 'quasar';
-import moment from 'moment';
 import MainDoctor from '../data/MainDoctor.js';
 import MainNurse from '../data/MainNurse.js';
 
@@ -130,6 +129,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     residentDoctor: '',
     // 是否顯示住院醫師
     isShowResidentDoctor: false,
+    // RDS
+    isRDS: false,
   }),
   getters: {
     weightDiff(state) {
@@ -138,7 +139,7 @@ export const useMainStoreStore = defineStore('mainStore', {
     bedOptions() {
       // 1~18，除去4、13、14
       return Array.from({ length: 18 }, (_, i) => i + 1).filter(
-        (n) => ![4, 13, 14].includes(n)
+        (n) => ![4, 13, 14].includes(n),
       );
     },
   },
@@ -167,6 +168,7 @@ export const useMainStoreStore = defineStore('mainStore', {
         this.isShowMainDoctor = this.data.isShowMainDoctor || false;
         this.isShowMainNurse = this.data.isShowMainNurse || false;
         this.isShowResidentDoctor = this.data.isShowResidentDoctor || false;
+        this.isRDS = this.data.isRDS || false;
       }
     },
     addDefaultNurseOptions() {
@@ -267,6 +269,7 @@ export const useMainStoreStore = defineStore('mainStore', {
         isShowMainDoctor: this.isShowMainDoctor,
         isShowMainNurse: this.isShowMainNurse,
         isShowResidentDoctor: this.isShowResidentDoctor,
+        isRDS: this.isRDS,
       });
     },
     addDefaultMainDoctorOptions() {
@@ -292,7 +295,7 @@ export const useMainStoreStore = defineStore('mainStore', {
     },
     deleteMainDoctorOption(option) {
       this.mainDoctorOptions = this.mainDoctorOptions.filter(
-        (item) => item !== option
+        (item) => item !== option,
       );
       Cookies.set('main_doctor_options', this.mainDoctorOptions);
       if (this.mainDoctorOptions.length === 0) {
@@ -326,7 +329,7 @@ export const useMainStoreStore = defineStore('mainStore', {
     },
     deleteMainNurseOption(option) {
       this.mainNurseOptions = this.mainNurseOptions.filter(
-        (item) => item !== option
+        (item) => item !== option,
       );
       Cookies.set('main_nurse_options', this.mainNurseOptions);
       if (this.mainNurseOptions.length === 0) {
@@ -355,7 +358,7 @@ export const useMainStoreStore = defineStore('mainStore', {
     },
     deleteResidentDoctorOption(option) {
       this.residentDoctorOptions = this.residentDoctorOptions.filter(
-        (item) => item !== option
+        (item) => item !== option,
       );
       Cookies.set('resident_doctor_options', this.residentDoctorOptions);
       if (this.residentDoctorOptions.length === 0) {
