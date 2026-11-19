@@ -3,6 +3,8 @@
     <p class="top-right text-h2 text-weight-bold flex items-center">
       <span> 床號 :5A99- {{ pageStore.bed }} </span>
       <span class="rds q-ml-md" v-if="pageStore.isRDS">RDS</span>
+
+      <span class="danger q-ml-md" v-if="pageStore.isDangerous">高危險</span>
     </p>
     <p class="top-right-sub text-h4 text-weight-bold">
       出生體重 : {{ pageStore.birthWeight }} 公克 <br />
@@ -216,6 +218,12 @@ onUnmounted(() => {
     padding-left: 8px;
     font-size: 3rem;
     background-color: #fedd5a;
+  }
+  .danger {
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 3rem;
+    background-color: #ff4d4f;
   }
 }
 </style>

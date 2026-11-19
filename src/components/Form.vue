@@ -32,6 +32,11 @@
                 v-model="pageStore.isRDS"
                 label="RDS收案"
               ></q-checkbox>
+              <q-checkbox
+                class="q-mr-md"
+                v-model="pageStore.isDangerous"
+                label="高危險"
+              ></q-checkbox>
             </div>
             <div class="form-item row items-center text-dark">
               <div class="col-auto">

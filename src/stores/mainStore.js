@@ -131,6 +131,8 @@ export const useMainStoreStore = defineStore('mainStore', {
     isShowResidentDoctor: false,
     // RDS
     isRDS: false,
+    // 是否高危險
+    isDangerous: false,
   }),
   getters: {
     weightDiff(state) {
@@ -169,6 +171,7 @@ export const useMainStoreStore = defineStore('mainStore', {
         this.isShowMainNurse = this.data.isShowMainNurse || false;
         this.isShowResidentDoctor = this.data.isShowResidentDoctor || false;
         this.isRDS = this.data.isRDS || false;
+        this.isDangerous = this.data.isDangerous || false;
       }
     },
     addDefaultNurseOptions() {
@@ -270,6 +273,7 @@ export const useMainStoreStore = defineStore('mainStore', {
         isShowMainNurse: this.isShowMainNurse,
         isShowResidentDoctor: this.isShowResidentDoctor,
         isRDS: this.isRDS,
+        isDangerous: this.isDangerous,
       });
     },
     addDefaultMainDoctorOptions() {
